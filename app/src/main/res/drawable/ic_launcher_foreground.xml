@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cuaderno abierto con cinta dorada, dentro de la zona segura del ícono adaptable. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Página izquierda -->
+    <path
+        android:fillColor="#FAF6EE"
+        android:pathData="M54,40 C47,35.5 38,34 30,35 L30,72 C38,71 47,72.5 54,77 Z" />
+    <!-- Página derecha -->
+    <path
+        android:fillColor="#F1E6CF"
+        android:pathData="M54,40 C61,35.5 70,34 78,35 L78,72 C70,71 61,72.5 54,77 Z" />
+    <!-- Renglones -->
+    <path
+        android:strokeColor="#1E4D3A"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M36,46 L48,47.5 M36,53 L48,54.5 M36,60 L48,61.5 M60,47.5 L72,46 M60,54.5 L72,53" />
+    <!-- Cinta dorada -->
+    <path
+        android:fillColor="#D4AF4F"
+        android:pathData="M64,36 L70,35.2 L70,62 L67,59 L64,62 Z" />
+</vector>

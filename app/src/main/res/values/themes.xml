@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema de la ventana mientras arranca Compose (evita un destello blanco). -->
+    <style name="Theme.Cuaderno" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/warm_background</item>
+    </style>
+
+    <color name="warm_background">#FAF6EE</color>
+    <color name="launcher_background">#1E4D3A</color>
+</resources>
