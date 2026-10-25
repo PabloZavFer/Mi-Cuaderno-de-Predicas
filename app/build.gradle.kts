@@ -36,6 +36,14 @@ android {
     }
 
     signingConfigs {
+        // Clave de depuración fija: así cada APK de prueba (también los compilados en GitHub)
+        // se instala encima del anterior sin desinstalar ni perder las prédicas.
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
         if (keystorePropsFile.exists()) {
             create("release") {
                 val props = Properties().apply { keystorePropsFile.inputStream().use { load(it) } }

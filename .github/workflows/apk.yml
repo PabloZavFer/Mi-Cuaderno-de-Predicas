@@ -1,0 +1,53 @@
+# Compila el APK de prueba en los servidores de GitHub y lo publica en
+# "Releases → APK de prueba" para descargarlo directamente desde el celular.
+name: APK de prueba
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Pruebas unitarias
+        run: ./gradlew --no-daemon testDebugUnitTest
+
+      - name: Compilar APK
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Guardar APK como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: mi-cuaderno-de-predicas-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Publicar en Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk mi-cuaderno-de-predicas.apk
+          gh release delete apk-prueba --yes --cleanup-tag || true
+          gh release create apk-prueba mi-cuaderno-de-predicas.apk \
+            --prerelease \
+            --target "${GITHUB_SHA}" \
+            --title "APK de prueba" \
+            --notes "Versión de prueba compilada automáticamente desde ${GITHUB_SHA::7}. Descarga mi-cuaderno-de-predicas.apk desde el celular e instálala. Se instala encima de la anterior sin perder tus prédicas."

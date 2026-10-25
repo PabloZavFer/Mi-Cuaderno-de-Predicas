@@ -14,3 +14,5 @@
 keystore.properties
 *.jks
 *.keystore
+# Excepción: clave de DEPURACIÓN fija, pública a propósito (solo firma APK de prueba, nunca Google Play).
+!app/debug.keystore
