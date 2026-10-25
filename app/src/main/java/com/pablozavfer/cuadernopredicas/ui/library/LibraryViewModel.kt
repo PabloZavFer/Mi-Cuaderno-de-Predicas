@@ -54,7 +54,7 @@ class LibraryViewModel(private val repository: SermonRepository) : ViewModel() {
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), LibraryUiState())
 
-    fun setQuery(value: String) {
+    fun onQueryChange(value: String) {
         query = value
     }
 

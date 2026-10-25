@@ -122,7 +122,7 @@ fun LibraryScreen(
             }
 
             item {
-                SearchField(query = vm.query, onChange = vm::setQuery)
+                SearchField(query = vm.query, onChange = vm::onQueryChange)
             }
             item {
                 Filters(state, onStatus = vm::setStatus, onTag = vm::setTag, onSort = vm::setSort)
